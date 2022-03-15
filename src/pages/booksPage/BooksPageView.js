@@ -32,6 +32,8 @@ export const BooksPageView = styled.main`
 
   .content {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    
+    flex-wrap: wrap;
   }
 `;

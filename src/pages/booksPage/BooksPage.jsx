@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from 'axios';
 
 import Button from "../../components/button/Button";
 import Card from "../../components/Card/Card";
@@ -10,7 +11,17 @@ import bannerInstitutiuon from "../../assets/banner.svg";
 import { BooksPageView } from "./BooksPageView";
 
 export default function BooksPage() {
+  const [books, setBooks] = useState([])
   const bookList = new BookRepository();
+
+  const app = axios.create({baseURL: 'http://18.228.4.142:3030'})
+
+  useEffect(() => {
+    app.get('/books')
+      .then((res) => {
+        setBooks(res.data)
+      })
+  }, [])
 
   return (
     <BooksPageView>
@@ -24,13 +35,13 @@ export default function BooksPage() {
           <Button add modalTitle="Adicione um titulo" book />
           <Button delet modalTitle="Remova um titulo" book />
         </div>
-      </section>
+      </section>      
 
       <section className="content">
         {
-          bookList.list().map((value) => (
+          books.map((value) => (
             <Card
-            bookName={value.name}
+            bookName={value.bookName}
             imgUrl="https://m.media-amazon.com/images/I/41IRFCLk-kL._SY346_.jpg"
             small
           />

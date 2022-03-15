@@ -20,8 +20,8 @@ function App() {
         <h1>FriendBook</h1>
         <label>Login</label>
       </header>
-      {/* <BooksPage /> */}
-      <Institutiuon />
+      <BooksPage />
+      {/* <Institutiuon /> */}
       {/* <HomePage /> */}
     </AppView>
   );
