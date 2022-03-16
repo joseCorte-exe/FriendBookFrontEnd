@@ -15,6 +15,6 @@ export default class AddInstitution {
       address,
       administratorName,
       administratorEmail
-    }).then((res) => {alert(res)})
+    }).then((res) => {alert('instituição criada com sucesso')})
   }
 }

@@ -1,6 +1,8 @@
 import React from 'react'
 
 import Card from '../../components/Card/Card';
+import Button from "../../components/button/Button";
+
 
 import bannerBook from "../../assets/bannerBook.svg";
 
@@ -23,7 +25,8 @@ export default function HomePage() {
           facilisis tortor rutrum sed. Morbi in augue urna. Nulla facilisi.
         </p>
 
-        <button>Doe aqui seu livro!!</button>
+        <Button addBook book title='Doe aqui seu livro!!!' />
+
 
         <h2>Algumas de nossas instituições:</h2>
         <article>

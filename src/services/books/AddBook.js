@@ -19,6 +19,6 @@ export default class AddBook {
       Publisher,
       units,
       synopsis
-    }).then((res) => {alert(res)})
+    }).then((res) => {alert('Livro criado com sucesso')})
   }
 }

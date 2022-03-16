@@ -7,7 +7,7 @@ import AddInstitution from '../../services/institutions/AddInstitution';
 import { ButtonView } from "./ButtonView";
 
 
-export default function Button({ addBook, deleteBook, addInstitution, deleteInstitution, edit, modalTitle }) {
+export default function Button({ addBook, deleteBook, addInstitution, deleteInstitution, edit, title }) {
   const [open, setOpen] = useState(false);
 
   const [bookName, setBookName] = useState('')
@@ -93,9 +93,9 @@ export default function Button({ addBook, deleteBook, addInstitution, deleteInst
         primary={addBook || addInstitution ? "00B900" : deleteBook || deleteInstitution ? "FF0000" : edit ? "0066FF" : "C4C4C4"}
         hover={addBook || addInstitution ? "009200" : deleteBook || deleteInstitution ? "920000" : edit ? "006692" : "C4C4C4"}
         active={addBook || addInstitution ? "006800" : deleteBook || deleteInstitution ? "680000" : edit ? "006668" : "C4C4C4"}
-        onClick={() => handleOpen() }
+        onClick={ () => handleOpen() }
       >
-        {addBook || addInstitution ? "adicionar" : deleteBook || deleteInstitution ? "remover" : edit ? "editar" : "undefined"}
+        {title? title : addBook || addInstitution ? "adicionar" : deleteBook || deleteInstitution ? "remover" : edit ? "editar" : undefined}
       </ButtonView>
 
       <Modal
