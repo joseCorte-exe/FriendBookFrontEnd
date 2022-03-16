@@ -1,13 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, {useState} from 'react'
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 
 import AddBook from "../../services/books/AddBook";
 import AddInstitution from '../../services/institutions/AddInstitution';
-import { ButtonView } from "./ButtonView";
 
 
-export default function Button({ addBook, deleteBook, addInstitution, deleteInstitution, edit, modalTitle }) {
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 900,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  pt: 2,
+  px: 4,
+  pb: 3,
+};
+
+export default function MyModal(addBook, deleteBook, addInstitution, deleteInstitution) {
   const [open, setOpen] = useState(false);
 
   const [bookName, setBookName] = useState('')
@@ -23,20 +36,6 @@ export default function Button({ addBook, deleteBook, addInstitution, deleteInst
   const [address, setAddress] = useState('')
   const [administratorName, setAdministratorName] = useState('')
   const [administratorEmail, setAdministratorEmail] = useState('')
-
-  const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 900,
-    bgcolor: "background.paper",
-    border: "2px solid #000",
-    boxShadow: 24,
-    pt: 2,
-    px: 4,
-    pb: 3,
-  };
 
   const createBook = new AddBook()
   const createInstitution = new AddInstitution()
@@ -67,16 +66,16 @@ export default function Button({ addBook, deleteBook, addInstitution, deleteInst
     setInstitutionName(e.target.value)
   }
   function handleInstitutionNumber(e) {
-    setInstitutionNumber(e.target.value)
+    setBookName(e.target.value)
   }  
   function handleAddress(e) {
-    setAddress(e.target.value)
+    setBookName(e.target.value)
   }
   function handleAdministratorName(e) {
-    setAdministratorName(e.target.value)
+    setBookName(e.target.value)
   }
   function handleAdministratorEmail(e) {
-    setAdministratorEmail(e.target.value)
+    setBookName(e.target.value)
   }
 
   const handleClose = () => {
@@ -87,18 +86,10 @@ export default function Button({ addBook, deleteBook, addInstitution, deleteInst
   };
 
 
-  return (
-    <>
-      <ButtonView
-        primary={addBook || addInstitution ? "00B900" : deleteBook || deleteInstitution ? "FF0000" : edit ? "0066FF" : "C4C4C4"}
-        hover={addBook || addInstitution ? "009200" : deleteBook || deleteInstitution ? "920000" : edit ? "006692" : "C4C4C4"}
-        active={addBook || addInstitution ? "006800" : deleteBook || deleteInstitution ? "680000" : edit ? "006668" : "C4C4C4"}
-        onClick={() => handleOpen() }
-      >
-        {addBook || addInstitution ? "adicionar" : deleteBook || deleteInstitution ? "remover" : edit ? "editar" : "undefined"}
-      </ButtonView>
+  console.log(open)
 
-      <Modal
+  return (
+    <Modal
     open={open}
     onClose={handleClose}
     aria-labelledby="parent-modal-title"
@@ -107,7 +98,7 @@ export default function Button({ addBook, deleteBook, addInstitution, deleteInst
     <Box sx={{ ...style }}>
       {
         addBook?
-        <div style={{display: 'flex', flexDirection: 'column'}}>
+        <>
           <h2 id="parent-modal-title">Adicione um livro</h2>
           <p id="parent-modal-description"></p>
           <hr />
@@ -134,7 +125,7 @@ export default function Button({ addBook, deleteBook, addInstitution, deleteInst
             units,
             synopsys
             )}} >Criar!</button>
-        </div> : deleteBook?
+        </> : deleteBook?
         <>
           <h2 id="parent-modal-title">Remova um livro</h2>
           <p id="parent-modal-description"></p>
@@ -146,35 +137,31 @@ export default function Button({ addBook, deleteBook, addInstitution, deleteInst
 
       {
         addInstitution?
-        <div style={{display: 'flex', flexDirection: 'column'}}>
-          <h2 id="parent-modal-title">Adicione uma instituição</h2>
+        <>
+          <h2 id="parent-modal-title">Adicione um livro</h2>
           <p id="parent-modal-description"></p>
           <hr />
           <label type="text" >nome da instituição</label>
-          <input value={institutionName} onChange={handleInstitutionName}/>
+          <input value={bookName} onChange={handleInstitutionName}/>
           <label>numero da instituição(numero do endereço)</label>
-          <input value={institutionNumber} onChange={handleInstitutionNumber}/>
+          <input value={launch} onChange={handleInstitutionNumber}/>
           <label>rua da instituição</label>
-          <input value={address} onChange={handleAddress}/>
+          <input value={edition} onChange={handleAddress}/>
           <label>nome do administrador</label>
-          <input value={administratorName} onChange={handleAdministratorName}/>
+          <input value={author} onChange={handleAdministratorName}/>
           <label>email do administrador</label>
-          <input value={administratorEmail} onChange={handleAdministratorEmail}/>
+          <input value={author} onChange={handleAdministratorEmail}/>
 
-          <ButtonView
-            primary={addBook || addInstitution ? "00B900" : deleteBook || deleteInstitution ? "FF0000" : edit ? "0066FF" : "C4C4C4"}
-            hover={addBook || addInstitution ? "009200" : deleteBook || deleteInstitution ? "920000" : edit ? "006692" : "C4C4C4"}
-            active={addBook || addInstitution ? "006800" : deleteBook || deleteInstitution ? "680000" : edit ? "006668" : "C4C4C4"}
-            onClick={() => {createInstitution.createInstitution(
-              institutionName,
-              institutionNumber,
-              address,
-              administratorName,
-              administratorEmail
-            )}} >Criar!</ButtonView> 
-        </div> : deleteInstitution?
+          <button onClick={() => {createInstitution.createInstitution(
+            institutionName,
+            institutionNumber,
+            address,
+            administratorName,
+            administratorEmail
+            )}} >Criar!</button> 
+        </> : deleteInstitution?
         <>
-          <h2 id="parent-modal-title">Adicione uma instituição</h2>
+          <h2 id="parent-modal-title">Adicione um livro</h2>
           <p id="parent-modal-description"></p>
           <hr />
           <label type="text" >nome da instituição</label>
@@ -182,6 +169,5 @@ export default function Button({ addBook, deleteBook, addInstitution, deleteInst
       }
     </Box>
   </Modal>
-    </>
-  );
+  )
 }

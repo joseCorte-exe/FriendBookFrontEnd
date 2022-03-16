@@ -8,9 +8,12 @@ import { BookRepository } from "../../services/books/repositories/BooksRepositor
 import bannerInstitutiuon from "../../assets/banner.svg";
 
 import { InstitutionView } from "./Institution";
+import { useParams } from "react-router";
 
 export default function Institutiuon() {
   const bookList = new BookRepository();
+
+  const institutionName = useParams()
 
   return (
     <InstitutionView>
@@ -45,7 +48,7 @@ export default function Institutiuon() {
           bookList.list().map((value) => (
             <Card
             bookName={value.name}
-            imgUrl="https://m.media-amazon.com/images/I/41IRFCLk-kL._SY346_.jpg"
+            imgUrl="https://www.contandodestinos.com/wp-content/uploads/2017/02/Melhores-Sebos-de-Sao-Paulo.jpg"
             small
           />
           ))

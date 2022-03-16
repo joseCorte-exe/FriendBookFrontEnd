@@ -12,6 +12,12 @@ export const AppView = styled.main`
 
         border-bottom: 1px solid black;
 
+        a {
+            margin-right: 3rem;
+            text-decoration: none;
+            color: black;
+        }
+
         section {
             label {
                 margin-right: 3rem;
